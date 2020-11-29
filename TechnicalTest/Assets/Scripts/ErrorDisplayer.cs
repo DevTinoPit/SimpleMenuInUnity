@@ -15,7 +15,7 @@ public class ErrorDisplayer : MonoBehaviour
 
     [Header("Parameters"), SerializeField] string _invalidCharacterErrorMsg;
     [SerializeField] string _noCharactersErrorMsg;
-    [SerializeField] string _loadErrormsg;
+    [SerializeField] string _loadErrorMsg;
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class ErrorDisplayer : MonoBehaviour
                 _displayText.text = _invalidCharacterErrorMsg;
                 break;
             case "LoadError":
-                _displayText.text = _loadErrormsg;
+                _displayText.text = _loadErrorMsg;
                 break;
             default:
                 break;
