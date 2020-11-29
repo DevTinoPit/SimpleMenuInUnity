@@ -8,6 +8,7 @@ public class StringVariableWriter : MonoBehaviour
 {
     [SerializeField] TMP_InputField _inputField;
     [SerializeField] StringVariable _operatedStringVariable;
+    [SerializeField] GameEvent _nameUpdated;
 
     string _checkString;
 
@@ -21,14 +22,21 @@ public class StringVariableWriter : MonoBehaviour
 
     private IEnumerator Write()
     {
+        _checkString = _inputField.text;
         while (true)
         {
             if (_inputField.text != _checkString)
             {
                 _operatedStringVariable.CurrentValue = _inputField.text;
                 _checkString = _inputField.text;
+                _nameUpdated.Raise();
             }
             yield return null;
         }
+    }
+
+    public void EraseInput()
+    {
+        _inputField.text = "";
     }
 }

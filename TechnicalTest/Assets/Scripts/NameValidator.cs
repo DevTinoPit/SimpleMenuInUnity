@@ -10,6 +10,7 @@ public class NameValidator : MonoBehaviour
     [SerializeField] GameEvent _noCharactersEvent;
 
     [Space, SerializeField] StringReadOnlyReference _enterString;
+    [SerializeField] StringVariable _validatedNameVariable;
 
     [Header("Parameters"), SerializeField] char[] _invalidCharacters;
 
@@ -34,5 +35,7 @@ public class NameValidator : MonoBehaviour
                 }
             }
         }
+        _validatedNameVariable.CurrentValue = _enterString.value;
+        _validEvent.Raise();
     }
 }
