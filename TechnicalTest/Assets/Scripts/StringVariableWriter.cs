@@ -20,6 +20,10 @@ public class StringVariableWriter : MonoBehaviour
             Debug.LogWarning("Please link requiered references.");
     }
 
+    /// <summary>
+    /// Manage association of text input and operated string variable
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Write()
     {
         _checkString = _inputField.text;

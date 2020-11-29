@@ -14,16 +14,23 @@ public class NameValidator : MonoBehaviour
 
     [Header("Parameters"), SerializeField] char[] _invalidCharacters;
 
+    private void Start()
+    {
+        _validatedNameVariable.CurrentValue = "MyName";
+    }
+
     public void Validate()
     {
         string lSavedString = _enterString.value;
 
+        //If the string is empty return error
         if (lSavedString.Length <= 0)
         {
             _noCharactersEvent.Raise();
             return;
         }
 
+        //If the string contains any banned character, return error
         for (int i = 0; i < lSavedString.Length; i++)
         {
             for (int j = 0; j < _invalidCharacters.Length; j++)
@@ -36,6 +43,12 @@ public class NameValidator : MonoBehaviour
             }
         }
         _validatedNameVariable.CurrentValue = _enterString.value;
+        _validEvent.Raise();
+    }
+
+    public void ResetName()
+    {
+        _validatedNameVariable.CurrentValue = "MyName";
         _validEvent.Raise();
     }
 }

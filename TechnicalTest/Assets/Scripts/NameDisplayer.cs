@@ -18,7 +18,7 @@ public class NameDisplayer : MonoBehaviour
 
     private void Start()
     {
-        _displayText.text = "My Name";
+        _displayText.text = "MyName";
     }
 
     public void UpdateName()

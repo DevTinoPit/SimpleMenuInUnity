@@ -6,17 +6,21 @@ using System;
 using DG.Tweening;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
+[RequireComponent(typeof(AudioSource))]
 
 public class ErrorDisplayer : MonoBehaviour
 {
     TextMeshProUGUI _displayText;
+    AudioSource _audioComp;
 
     [Header("Parameters"), SerializeField] string _invalidCharacterErrorMsg;
     [SerializeField] string _noCharactersErrorMsg;
+    [SerializeField] string _loadErrormsg;
 
     private void Awake()
     {
         _displayText = GetComponent<TextMeshProUGUI>();
+        _audioComp = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -24,6 +28,10 @@ public class ErrorDisplayer : MonoBehaviour
         RemoveErrorMessage();
     }
 
+    /// <summary>
+    /// Display error message according to parameter & launch sfx
+    /// </summary>
+    /// <param name="pErrorType"></param>
     public void DisplayErrorMessage(String pErrorType)
     {
         switch (pErrorType)
@@ -34,10 +42,14 @@ public class ErrorDisplayer : MonoBehaviour
             case "InvalidCharacter":
                 _displayText.text = _invalidCharacterErrorMsg;
                 break;
+            case "LoadError":
+                _displayText.text = _loadErrormsg;
+                break;
             default:
                 break;
         }
         transform.DOShakePosition(.5f, 5f);
+        _audioComp.Play();
     }
 
     public void RemoveErrorMessage()
